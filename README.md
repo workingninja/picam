@@ -1,5 +1,7 @@
 # picamir
 
+A simple live stream Web cam with IR for the Raspberry Pi.
+
 ## Requirements
 
 1. Python 2.7
@@ -78,4 +80,4 @@ Add the following to your users crontab (`crontab -e`):
 
 ## Special Thanks
 
-This project would not be possible without the camera module from [Miguel Grinberg](https://github.com/miguelgrinberg/flask-video-streaming) and IR LEDS and code developed by [Pi Supply](https://uk.pi-supply.com/products/bright-pi-bright-white-ir-camera-light-raspberry-pi).
+This project would not be possible without the camera module from [Miguel Grinberg](https://github.com/miguelgrinberg/flask-video-streaming) and IR LEDs and code developed by [Pi Supply](https://uk.pi-supply.com/products/bright-pi-bright-white-ir-camera-light-raspberry-pi).
