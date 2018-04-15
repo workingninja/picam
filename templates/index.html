@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
+    <title>PiCam IR</title>
+    <style>
+      .container-fluid {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+	<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
+	  <label class="btn btn-secondary w-50 ir-off">
+	    <input type="radio" name="options" id="ir-off" autocomplete="off"> IR OFF
+	  </label>
+	  <label class="btn btn-secondary w-50 ir-on">
+	    <input type="radio" name="options" id="ir-on" autocomplete="off"> IR ON
+	  </label>
+	</div>
+    	<img id="camera" src="{{ url_for('video_stream') }}" style="width: 100%;">
+    </div>
+    <script src="/static/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!--<script src="/static/popper.js/dist/popper.min.js"></script>-->
+    <script>
+    (function($) {
+      $(document).ready(function() {
+	function irButtonOn() {
+	    $("#ir-off").parent().removeClass("active");
+	    $("#ir-on").parent().addClass("active");
+	    $("#ir-on").prop("checked", true);
+	}
+	function irButtonOff() {
+	    $("#ir-on").parent().removeClass("active");
+	    $("#ir-off").parent().addClass("active");
+	    $("#ir-off").prop("checked", true);
+	}
+	function setIrButton(irStatus) {
+	  console.log(irStatus);
+	  if (irStatus == 0) {
+            irButtonOff();
+	  } else if (irStatus == 1) {
+            irButtonOn();
+	  }
+	}
+	function irStatus() {
+          $.get("{{ url_for('ir_status') }}", function(irStatus) {
+	    setIrButton(irStatus);
+	  });
+	}
+	irStatus();
+
+	$(".ir-off").on("click", function() {
+	  console.log('click');
+	  $.post("{{ url_for('ir_switch') }}", {'value': 0}, function() {
+            irButtonOff();
+	  });
+	});
+	$(".ir-on").on("click", function() {
+	  console.log('click');
+	  $.post("{{ url_for('ir_switch') }}", {'value': 1}, function() {
+	    irButtonOn();
+	  });
+	});
+
+        setTimeout(function() {
+          var image = document.getElementById('camera');
+          if (image.clientHeight == 0) {
+            window.location.reload();
+          }
+        }, 3000);
+      });
+    })(jQuery);
+    </script>
+  </body>
+</html>

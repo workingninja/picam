@@ -1,0 +1,7 @@
+env/
+ir/brightpi
+node_modules/
+static
+*.pyc
+yarn-error.log
+
