@@ -70,12 +70,12 @@ ln -s node_modules static
 (env)$ ./app.py
 ```
 
-### Permanently (on boot)
+### Persistent (across reboots)
 
 Add the following to your users crontab (`crontab -e`):
 
 ```bash
-@reboot cd /path/to/picamir && source env/bin/activate && ./app.py
+@reboot /path/to/picamir/env/bin/python /path/to/picamir/app.py
 ```
 
 ## Special Thanks
