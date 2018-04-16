@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
     <title>PiCam IR</title>
     <style>
+      body {
+        background-color: #333;
+      }
       .container-fluid {
         padding-left: 0;
         padding-right: 0;
@@ -14,15 +17,17 @@
   </head>
   <body>
     <div class="container-fluid">
-	<div class="btn-group btn-group-toggle w-100" data-toggle="buttons">
-	  <label class="btn btn-secondary w-50 ir-off">
-	    <input type="radio" name="options" id="ir-off" autocomplete="off"> IR OFF
-	  </label>
-	  <label class="btn btn-secondary w-50 ir-on">
-	    <input type="radio" name="options" id="ir-on" autocomplete="off"> IR ON
-	  </label>
-	</div>
     	<img id="camera" src="{{ url_for('video_stream') }}" style="width: 100%;">
+	<nav class="navbar fixed-bottom navbar-dark justify-content-end">
+	  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+	    <label class="btn btn-outline-info ir-off">
+	      <input type="radio" name="options" id="ir-off" autocomplete="off"> IR OFF
+	    </label>
+	    <label class="btn btn-outline-info ir-on">
+	      <input type="radio" name="options" id="ir-on" autocomplete="off"> IR ON
+	    </label>
+	  </div>
+	</nav>
     </div>
     <script src="/static/jquery/dist/jquery.min.js"></script>
     <script src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
