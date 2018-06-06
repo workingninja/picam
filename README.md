@@ -8,6 +8,7 @@ A simple live stream Web cam with IR for the Raspberry Pi.
 2. Raspberry Pi with Raspbian
 3. [Pi NoIR Camera v2](https://www.raspberrypi.org/products/pi-noir-camera-v2/)
 4. [BrightPi](https://uk.pi-supply.com/products/bright-pi-bright-white-ir-camera-light-raspberry-pi)
+5. [AM2302 Temperature and Humidity Sensor](https://www.adafruit.com/product/393)
 
 ## Installation
 
