@@ -64,7 +64,7 @@ ln -s node_modules static
 
 ### Temperature/Humidity Sensor
 
-This project is currently hardcoded with an [AM2302 temperature and humidity sensor](https://www.adafruit.com/product/393). To install library for reading the sensor, follow the instructions provided by Adafruit: https://github.com/adafruit/Adafruit_Python_DHT
+This project is currently hardcoded with an [AM2302 temperature and humidity sensor](https://www.adafruit.com/product/393). To install the library for reading the sensor, follow the instructions provided by Adafruit: https://github.com/adafruit/Adafruit_Python_DHT
 
 ## Running picamir
 
