@@ -4,6 +4,8 @@ from flask import Flask, jsonify, render_template, request, Response
 from camera.camera import Camera
 import ir.ir_control as ir_control
 
+import Adafruit_DHT
+
 
 app = Flask(__name__)
 
@@ -26,6 +28,18 @@ def ir_switch():
     return jsonify({})
 
 
+@app.route('/temp_humidity')
+def temp_humidity():
+    humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
+    humidity = int(round(humidity))
+    temperature = round(temperature * 9/5.0 + 32, 1)
+    data = {
+        'temp': '{}'.format(temperature),
+        'humidity': '{}'.format(humidity)
+    }
+    return jsonify(data)
+
+
 @app.route('/video_stream')
 def video_stream():
     def gen(camera):
@@ -37,5 +51,5 @@ def video_stream():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True)
+    app.run(host='0.0.0.0', port=80, threaded=True)
 

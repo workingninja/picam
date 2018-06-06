@@ -18,8 +18,16 @@
   <body>
     <div class="container-fluid">
     	<img id="camera" src="{{ url_for('video_stream') }}" style="width: 100%;">
-	<nav class="navbar fixed-bottom navbar-dark justify-content-end">
-	  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+	<nav class="navbar fixed-bottom navbar-dark">
+	  <span class="navbar-text">
+            <span class="badge badge-pill badge-danger">
+              <span id="temp"></span>&deg;F
+            </span>
+            <span class="badge badge-pill badge-primary">
+              <span id="humidity"></span>%
+            </span>
+          </span>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
 	    <label class="btn btn-outline-info ir-off">
 	      <input type="radio" name="options" id="ir-off" autocomplete="off"> IR OFF
 	    </label>
@@ -46,7 +54,6 @@
 	    $("#ir-off").prop("checked", true);
 	}
 	function setIrButton(irStatus) {
-	  console.log(irStatus);
 	  if (irStatus == 0) {
             irButtonOff();
 	  } else if (irStatus == 1) {
@@ -79,6 +86,16 @@
             window.location.reload();
           }
         }, 3000);
+
+	function refreshTempHumidity() {
+          $.get("{{ url_for('temp_humidity') }}", function(data) {
+              console.log(data);
+	      $('#temp').text(data['temp']);
+	      $('#humidity').text(data['humidity']);
+          });
+	}
+        refreshTempHumidity();
+        setInterval(refreshTempHumidity, 5000);
       });
     })(jQuery);
     </script>
